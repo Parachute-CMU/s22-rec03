@@ -90,14 +90,18 @@ function newArrayIntQueue (): IntQueue {
       const tail = (head + size) % elementData.length
       elementData[tail] = value
       size++
+      head = tail
       return true
     },
 
     isEmpty: function (): boolean {
-      return size >= 0
+      return size === 0
     },
 
     peek: function (): number | null {
+      if (this.isEmpty()) {
+        return null
+      }
       return elementData[head]
     },
 
